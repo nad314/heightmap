@@ -8,7 +8,6 @@ public:
 	void onOpened() override;
 	void onClosed() override;
 
-	int onPaint(const core::eventInfo& e) override;
 	int onResize(const core::eventInfo& e) override;
 
 	void reshape();

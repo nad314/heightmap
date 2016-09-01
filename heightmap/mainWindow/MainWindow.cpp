@@ -24,11 +24,6 @@ void MainWindow::onClosed() {
 	WindowForm::onClosed();
 }
 
-int MainWindow::onPaint(const core::eventInfo& e) {
-	WindowForm::onPaint(e);
-	return renderWindow.onPaint(e);
-}
-
 int MainWindow::onResize(const core::eventInfo& e) {
 	int ret = WindowForm::onResize(e);
 	reshape();

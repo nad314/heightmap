@@ -128,12 +128,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="controller\controller.cpp" />
     <ClCompile Include="mainWindow\MainWindow.cpp" />
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="program\program.cpp" />
     <ClCompile Include="renderWindow\RenderWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="controller\controller.h" />
     <ClInclude Include="mainWindow\MainWindow.h" />
     <ClInclude Include="main\main.h" />
     <ClInclude Include="program\program.h" />
