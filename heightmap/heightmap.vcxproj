@@ -133,6 +133,7 @@
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="program\program.cpp" />
     <ClCompile Include="renderWindow\RenderWindow.cpp" />
+    <ClCompile Include="storage\storage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controller\controller.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="main\main.h" />
     <ClInclude Include="program\program.h" />
     <ClInclude Include="renderWindow\RenderWindow.h" />
+    <ClInclude Include="storage\storage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

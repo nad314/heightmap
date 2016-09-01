@@ -1,6 +1,8 @@
 #include <main/main.h>
 
 int Program::onLoad() {
+	data = NULL;
+	controller = NULL;
 	return 0;
 }
 
@@ -11,10 +13,16 @@ int Program::onDispose() {
 int Program::onStart() {
 	if (!wnd.open())
 		return 1;
+	data = new Storage();
+	controller = new Controller(&wnd.renderWindow, data);
 	return 0;
 }
 
 int Program::onStop() {
+	delete controller;
+	controller = NULL;
+	delete data;
+	data = NULL;
 	wnd.close();
 	return 0;
 }
@@ -25,14 +33,6 @@ int Program::main() {
 		if (wnd.peekMessage(done)||wnd.renderWindow.peekMessage())
 			continue;
 		wnd.renderWindow.onPaint(core::eventInfo(NULL, NULL, 0, 0));
-		/*
-		GL::pushCurrent();
-		GL::makeCurrent(wnd.renderWindow);
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		GL::swapBuffers(wnd.renderWindow);
-		GL::popCurrent();
-		*/
 		Sleep(1);
 	}
 	return 0;
