@@ -31,5 +31,5 @@ int MainWindow::onResize(const core::eventInfo& e) {
 }
 
 void MainWindow::reshape() {
-	MoveWindow(renderWindow.hWnd, 6, 40, width - 12, height - 46, true);
+	MoveWindow(renderWindow.hWnd, 6, 40, width - 12, height - 46, false);
 }
