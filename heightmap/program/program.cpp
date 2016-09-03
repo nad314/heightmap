@@ -30,10 +30,9 @@ int Program::onStop() {
 int Program::main() {
 	bool done(0);
 	while (!done) {
-		if (wnd.peekMessage(done)||wnd.renderWindow.peekMessage())
+		if (wnd.peekMessage(done) || wnd.renderWindow.peekMessage())
 			continue;
-		wnd.renderWindow.onPaint(core::eventInfo(NULL, NULL, 0, 0));
-		Sleep(1);
+		controller->drawScene();
 	}
 	return 0;
 }
