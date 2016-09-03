@@ -33,4 +33,4 @@ void MainWindow::reshape() {
 void MainWindow::onEndPaint(const core::eventInfo& e) {
 	WindowForm::onEndPaint(e);
 	core::Core2D::drawRect(renderWindow.getChildRect().expand(1), core::Color(10), *this);
-} 
+}
