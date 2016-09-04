@@ -13,7 +13,7 @@ int Program::onDispose() {
 int Program::onStart() {
 	if (!wnd.open())
 		return 1;
-	data = new Storage();
+	data = new Storage(); 
 	controller = new Controller(&wnd.renderWindow, data);
 	return 0;
 }
