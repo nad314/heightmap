@@ -3,6 +3,7 @@
 Storage::Storage() {
 	core::Path::pushDir();
 	core::Path::goHome();
-	img.loadTga("data/dragon.tga");
+	img.loadPng("data/dragon2.png");
+	img.savePng("data/saved.png");
 	core::Path::popDir();
 }
