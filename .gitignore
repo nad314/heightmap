@@ -17,7 +17,7 @@
 [Rr]eleases/
 [Xx]64/
 [Xx]86/
-[Bb]uild/
+[Bb]uild/[Bb]in/
 bld/
 [Bb]in/
 [Oo]bj/
@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/intermediate/heightmap.tlog

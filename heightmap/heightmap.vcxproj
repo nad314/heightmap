@@ -75,11 +75,11 @@
     <LibraryPath>D:\code\clib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\build\</OutDir>
-    <IntDir>$(SolutionDir)\bin\</IntDir>
-    <IncludePath>D:\code\core-forms\core-forms;D:\code\core\core;D:\code\heightmap\heightmap;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\code\clib;$(LibraryPath)</LibraryPath>
-    <ReferencePath>D:\code\clib;$(ReferencePath)</ReferencePath>
+    <OutDir>$(SolutionDir)\build\bin\</OutDir>
+    <IntDir>$(SolutionDir)\intermediate\</IntDir>
+    <IncludePath>$(SolutionDir)/../core/core/;$(SolutionDir)/../core-forms/core-forms/;$(SolutionDir)/heightmap;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\..\clib;$(LibraryPath)</LibraryPath>
+    <ReferencePath>$(SolutionDir)\..\clib;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

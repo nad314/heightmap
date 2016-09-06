@@ -4,6 +4,7 @@ void MainWindow::onOpening() {
 	WindowForm::onOpening();
 	setTitle("Core Heightmap Editor");
 	setClass("CoreHeightmapEditor");
+	setFlags(glw_hidden);
 }
 
 void MainWindow::onClosing() {

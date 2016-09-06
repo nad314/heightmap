@@ -15,6 +15,8 @@ int Program::onStart() {
 		return 1;
 	data = new Storage(); 
 	controller = new Controller(&wnd.renderWindow, data);
+	ShowWindow(wnd, SW_SHOW);
+	SetForegroundWindow(wnd);	
 	return 0;
 }
 
