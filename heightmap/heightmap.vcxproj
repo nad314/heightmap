@@ -77,7 +77,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\build\bin\</OutDir>
     <IntDir>$(SolutionDir)\intermediate\</IntDir>
-    <IncludePath>$(SolutionDir)/../core/core/;$(SolutionDir)/../core-forms/core-forms/;$(SolutionDir)/heightmap;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/../core/core/;$(SolutionDir)/../core-forms/core-forms/;$(ProjectDir);$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\..\clib;$(LibraryPath)</LibraryPath>
     <ReferencePath>$(SolutionDir)\..\clib;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
