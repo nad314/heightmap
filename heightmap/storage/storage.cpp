@@ -4,6 +4,6 @@ Storage::Storage() {
 	core::Path::pushDir();
 	core::Path::goHome();
 	core::Path::cd("../data/");
-	img.loadPng("dragon2.png");
+	img.loadPng("core.png");
 	core::Path::popDir();
 }
