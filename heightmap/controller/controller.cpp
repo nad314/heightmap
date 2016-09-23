@@ -23,7 +23,10 @@ Controller::Controller(core::Window* ptr, Storage* storage) {
 	lpdata->view.perspective(*parent, 41.5f, 0.1f, 100.0f);
 	lpdata->view.modelview = rotation*translation;
 
-	clearTextures();
+	//clearTextures();
+	//lpdata->material.dispose();
+	if (lpdata->textures.count())
+		lpdata->material = lpdata->textures[0];
 }
 
 Controller::~Controller() {

@@ -26,6 +26,7 @@ void Statusbar::onEndPaint(const core::eventInfo& e) {
 }
 
 void Statusbar::print(const char* s) {
+	printf(s);
 	strcpy(text, s);
 	int n = strlen(text);
 	for (int i = 0; i < n; ++i)

@@ -24,6 +24,7 @@ int Program::onStart() {
 	}
 	data = new Storage();
 	controller = new Controller(&wnd.renderWindow, data);
+	wnd.sidebar.matFrame.makeButtons();
 	ShowWindow(wnd, SW_SHOW);
 	SetForegroundWindow(wnd);	
 	return 0;

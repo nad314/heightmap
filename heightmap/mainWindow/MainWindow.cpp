@@ -5,7 +5,7 @@ void MainWindow::onOpening() {
 	setTitle("Material Preview");
 	setClass("CoreMaterialPreview");
 	setFlags(glw_hidden);
-	setSize(696, 540);
+	setSize(1024, 768);
 }
 
 void MainWindow::onClosing() {
@@ -36,8 +36,8 @@ int MainWindow::onResize(const core::eventInfo& e) {
 
 int MainWindow::onGetMinMaxInfo(const core::eventInfo& e) {
 	LPMINMAXINFO lpMMI = (LPMINMAXINFO)e.lP;
-	lpMMI->ptMinTrackSize.x = 640;
-	lpMMI->ptMinTrackSize.y = 480;
+	lpMMI->ptMinTrackSize.x = 800;
+	lpMMI->ptMinTrackSize.y = 600;
 	return e;
 }
 

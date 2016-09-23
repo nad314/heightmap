@@ -54,6 +54,9 @@
     <ClCompile Include="theme\apptheme.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sidebar\materialFrame\materialFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main\main.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="theme\apptheme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sidebar\materialFrame\materialFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

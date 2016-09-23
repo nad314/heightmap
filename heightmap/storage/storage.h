@@ -6,5 +6,9 @@ public:
 	core::glGameMesh model;
 	core::glShader shader;
 	core::glTextureMaterial material;
+	core::buffer<core::glTextureMaterial> textures;
 	Storage();
+	~Storage();
+
+	void loadTextureMaterials();
 };
