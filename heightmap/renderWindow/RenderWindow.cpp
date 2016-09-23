@@ -4,11 +4,10 @@ void RenderWindow::onOpening() {
 	Window::onOpening();
 	setTitle("Render Form");
 	setClass("RenderForm");
-	setStyle(WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS);
-	setExStyle(WS_EX_TOPMOST);
+	setStyle(WS_CHILD | WS_VISIBLE);
 	setFlags(0);
 }
-
+ 
 void RenderWindow::onOpened() {
 	Window::onOpened();
 	if (width == 0 || height == 0)
@@ -24,6 +23,6 @@ void RenderWindow::onClosing() {
 
 int RenderWindow::onResize(const core::eventInfo& e) {
 	Window::onResize(e);
-	GL::init(*this);
+	GL::ortho(*this);
 	return e;
 }

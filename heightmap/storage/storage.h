@@ -2,6 +2,9 @@
 
 struct Storage: public core::SIMD {
 public:
-	core::Image img;
+	core::glView view;
+	core::glGameMesh model;
+	core::glShader shader;
+	core::glTextureMaterial material;
 	Storage();
 };
