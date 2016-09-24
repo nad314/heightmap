@@ -8,7 +8,6 @@ public:
 	void onOpening() override;
 	void onOpened() override;
 	void onClosed() override;
-	void onEndPaint(const core::eventInfo& e) override;
-	
+	void onEndPaint(const core::eventInfo& e) override;	
 	void makeButtons();
 };

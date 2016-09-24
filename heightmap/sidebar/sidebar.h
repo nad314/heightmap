@@ -3,12 +3,8 @@
 
 class Sidebar final : public core::Frame {
 public:
+	core::Label matFrameLabel;
 	MaterialFrame matFrame;
-
-	core::Button clearButton;
-	core::Slider sizeSlider;
-	core::Button saveButton;
-	core::Button loadButton;
 
 	char difPath[256];
 	char norPath[256];

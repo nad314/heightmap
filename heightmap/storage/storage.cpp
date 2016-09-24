@@ -22,7 +22,6 @@ void Storage::loadTextureMaterials() {
 	std::string cdir = core::Path::getDir()+"\\";
 	core::Path::goHome();
 	core::Path::cd("../");
-	
 	core::buffer<std::string> files;
 	std::string path = core::Path::getDir() + "\\data\\materials\\";
 	files = core::Path::listFiles((path+"*.mat").c_str());
