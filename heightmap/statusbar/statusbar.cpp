@@ -36,6 +36,8 @@ int Statusbar::onResize(const core::eventInfo& e) {
 }
 
 void Statusbar::print(const char* s) {
+	static std::mutex mutex;
+	std::lock_guard<std::mutex> lock(mutex);
 	strcpy(text, s);
 	int n = strlen(text);
 	for (int i = 0; i < n; ++i)
@@ -46,13 +48,16 @@ void Statusbar::print(const char* s) {
 }
 
 void Statusbar::log(const char* s) {
+	std::lock_guard<std::mutex> lock(iomutex);
 	fprintf(output, s);
 }
 
 void Statusbar::info(const char* s) {
+	std::lock_guard<std::mutex> lock(iomutex);
 	fprintf(output, s);
 }
 
 void Statusbar::error(const char* s) {
-	fprintf(output, s);
+	std::lock_guard<std::mutex> lock(iomutex);
+	fprintf(output,s);
 }

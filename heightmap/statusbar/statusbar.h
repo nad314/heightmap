@@ -5,6 +5,7 @@ protected:
 	static Statusbar* currentStatusbar;
 	FILE* output;
 	char text[256];
+	std::mutex iomutex;
 public:
 	core::ProgBar progBar;
 	Statusbar() :Form(), Debugger() { 
