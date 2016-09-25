@@ -2,7 +2,6 @@
 
 class MaterialFrame : public core::Frame {
 public:
-	core::buffer<core::Image*> image;
 	core::buffer<core::ImageButton*> button;
 
 	void onOpening() override;

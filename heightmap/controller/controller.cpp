@@ -1,6 +1,7 @@
 #include <main\main.h>
 
 Controller* Controller::defController = NULL;
+bool Controller::busy = 0;
 bool Controller::repaint = 0;
 
 Controller::Controller(core::Window* ptr, Storage* storage) {
@@ -22,11 +23,6 @@ Controller::Controller(core::Window* ptr, Storage* storage) {
 	translation.translate(0.0f, 0.0f, -6.0f);
 	lpdata->view.perspective(*parent, 41.5f, 0.1f, 100.0f);
 	lpdata->view.modelview = rotation*translation;
-
-	//clearTextures();
-	//lpdata->material.dispose();
-	if (lpdata->textures.count())
-		lpdata->material = lpdata->textures[0];
 }
 
 Controller::~Controller() {
@@ -38,6 +34,19 @@ Controller::~Controller() {
 void Controller::drawScene() {
 	if (!parent||!repaint)
 		return;
+	if (busy) {
+		if (!isbusy) {
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			GL::swapBuffers(*parent);
+			repaint = 0;
+		}
+		isbusy = 1;
+		return;
+	}
+	else if (isbusy) {
+		isbusy = 0;
+		GL::makeCurrent(*parent);
+	}
 	Storage& data = *lpdata;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);

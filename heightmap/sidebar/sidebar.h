@@ -2,8 +2,11 @@
 #include "materialFrame/materialFrame.h"
 
 class Sidebar final : public core::Frame {
+private:
+	static Sidebar* currentSidebar;
 public:
-	core::Label matFrameLabel;
+	Sidebar() :Frame() { currentSidebar = this; }
+	core::Label matLabel;
 	MaterialFrame matFrame;
 
 	char difPath[256];
@@ -14,4 +17,7 @@ public:
 	static void adjustImage(core::Image& source, const core::Image& dest, const int& size);
 
 	void onEndPaint(const core::eventInfo& e) override;
+	int onLButtonDown(const core::eventInfo& e) override;
+	int onLButtonUp(const core::eventInfo& e) override;
+	inline static Sidebar& get() { return *currentSidebar; }
 };

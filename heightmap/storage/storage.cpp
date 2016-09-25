@@ -6,11 +6,10 @@ Storage::Storage() {
 	core::Path::cd("../data/");
 	Cube cube;
 	if (!shader.load("shaders/default/vertex.glsl", "shaders/default/fragment.glsl", "fragColor"))
-		core::Debug::print("Could not load shaders\n");
+		core::Debug::error("Could not load shaders\n");
 	else shader.printDebugInfo();
 	model.make(cube, shader, "pos", "nor", "tan", "btan", "tex");
 	core::Path::popDir();
-	loadTextureMaterials();
 }
 
 Storage::~Storage() {
@@ -27,18 +26,24 @@ void Storage::loadTextureMaterials() {
 	files = core::Path::listFiles((path+"*.mat").c_str());
 	textures.clear();
 	textures.reserve(files.count());
+	Statusbar::prog(0);
+	int c = 0;
 	for (auto& i : files) {
 		core::Debug::print("Loading '%s'...", i.c_str());
 		core::glTextureMaterial* mat = new core::glTextureMaterial;
 		if (mat->load((path+i).c_str(), core::Path::getHomeDir().c_str())) {
 			mat->genMipmaps();
 			textures.push_back(*mat);
-			core::Debug::print("OK\n");
+			core::Debug::log("OK\n");
 		}
 		else {
-			core::Debug::print("FAIL\n");
+			core::Debug::log("FAIL\n");
 			delete mat;
 		}
+		++c;
+		Statusbar::prog((float)c / files.count());
 	}
 	core::Path::cd(cdir.c_str());
+	Statusbar::prog(0);
+	core::Debug::print("Loaded Materials.\n");
 }

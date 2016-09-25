@@ -3,16 +3,17 @@
 class Controller : public core::EventListener {
 protected:
 	static Controller* defController;
-
 	core::Window* parent;
 	Storage* lpdata;
 	static bool repaint;
 	core::vec2i mpos;
 	bool dragging;
+	bool isbusy = 0;
 
 	core::matrixf rotation, translation;
 
 public:
+	static bool busy;
 	Controller() : EventListener(), parent(NULL) { defController = this; }
 	Controller(core::Window* prt, Storage* storage);
 	~Controller();
@@ -31,4 +32,5 @@ public:
 
 	void clearTextures();
 	void makeImage(core::glTexture& texture, core::Image& image);
+	inline core::Window* getParent() { return parent; }
 };

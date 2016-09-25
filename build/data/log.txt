@@ -1,0 +1,7 @@
+Vertex Shader Log:
+
+Fragment Shader Log:
+
+Loading 'dirt.mat'...OK
+Loading 'grass_small.mat'...OK
+Loaded Materials.

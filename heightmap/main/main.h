@@ -2,6 +2,7 @@
 #include <core>
 #include <core-forms>
 #include <core-game>
+#include <thread>
 using namespace core::opengl;
 
 //models
@@ -16,4 +17,6 @@ using namespace core::opengl;
 #include <storage/storage.h>
 #include <controller/controller.h>
 #include <program/program.h>
+
+using namespace coreTypes;
 

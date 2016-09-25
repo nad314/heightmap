@@ -1,6 +1,7 @@
 #include <main/main.h>
 
 int Controller::onResize(const core::eventInfo& e) {
+	if (busy)return e;
 	EventListener::onResize(e);
 	lpdata->view.perspective(*parent, 41.5f, 0.1f, 100.0f);
 	invalidate();
@@ -8,18 +9,21 @@ int Controller::onResize(const core::eventInfo& e) {
 }
 
 int Controller::onLButtonDown(const core::eventInfo& e) {
+	if (busy) return e;
 	dragging = 1;
 	SetCapture(*parent);
 	return EventListener::onLButtonDown(e);
 }
 
 int Controller::onLButtonUp(const core::eventInfo& e) {
+	if (busy) return e;
 	dragging = 0;
 	ReleaseCapture();
 	return EventListener::onLButtonUp(e);
 }
 
 int Controller::onMouseMove(const core::eventInfo& e) {
+	if (busy)return e;
 	core::vec2i lpos = mpos;
 	mpos = core::vec2i(LOWORD(e.lP), HIWORD(e.lP));
 	if (dragging) {

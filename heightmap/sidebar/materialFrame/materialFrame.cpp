@@ -15,9 +15,6 @@ void MaterialFrame::onOpened() {
 
 void MaterialFrame::onClosed() {
 	Frame::onClosed();
-	for (auto& i : image)
-		delete i;
-	image.clear();
 	for (auto& i : button)
 		delete i;
 	button.clear();
@@ -43,15 +40,18 @@ void MaterialFrame::makeButtons() {
 			int counter(0);
 			for (auto& i : mf.button) {
 				if (i->flags & 4) {
+					i->pin();
 					Storage& data = Controller::get().storage();
 					data.material = data.textures[counter];
 					Controller::get().invalidate();
 					core::Debug::print("Using Material %d\n", counter);
 				}
+				else if (i->pinned())i->unpin();
 				++counter;
 			}
 		}));
-		image.push_back(img);
+		ib->prerender();
+		delete img;
 		button.push_back(ib);
 		++c;
 	}

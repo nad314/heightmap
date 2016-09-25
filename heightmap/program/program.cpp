@@ -24,9 +24,27 @@ int Program::onStart() {
 	}
 	data = new Storage();
 	controller = new Controller(&wnd.renderWindow, data);
-	wnd.sidebar.matFrame.makeButtons();
 	ShowWindow(wnd, SW_SHOW);
-	SetForegroundWindow(wnd);	
+	SetForegroundWindow(wnd);
+	Controller::busy = true;
+	Controller::get().drawScene();
+
+	printf("Starting thread...\n");
+	wglMakeCurrent(NULL, NULL);
+	std::thread t([&]{
+		GL::makeCurrent(*Controller::get().getParent());
+		Controller::busy = true;
+		Storage& data = Controller::get().storage();
+		data.loadTextureMaterials();
+		Sidebar::get().matFrame.makeButtons();
+		if (data.textures.count())
+			data.material = data.textures[0];
+		wglMakeCurrent(NULL, NULL);
+		Controller::busy = false;
+		Controller::invalidate();
+		printf("Thread ended\n");
+	});
+	t.detach();
 	return 0;
 }
 
@@ -42,7 +60,7 @@ int Program::onStop() {
 int Program::main() {
 	bool done(0);
 	while (!done) {
-		if (wnd.peekMessageAsync(done))
+		if (wnd.peekMessageAsync(done, Controller::busy))
 			continue;
 		controller->drawScene();
 		Sleep(5);
