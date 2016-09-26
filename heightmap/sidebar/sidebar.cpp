@@ -6,7 +6,6 @@ void Sidebar::onOpening() {
 	Frame::onOpening();
 	setSize(256, 256);
 	setStyle(WS_CHILD | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
-	setClass("MaterialPreviewSidebar");
 }
 
 void Sidebar::onOpened() {

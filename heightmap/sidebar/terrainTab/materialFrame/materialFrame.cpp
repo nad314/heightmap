@@ -4,7 +4,6 @@ void MaterialFrame::onOpening() {
 	Frame::onOpening();
 	setStyle(WS_CHILD|WS_CLIPCHILDREN|WS_CLIPSIBLINGS);
 	setFlags(0);
-	setClass("sidebarMaterialFrame");
 }
 
 void MaterialFrame::onOpened() {

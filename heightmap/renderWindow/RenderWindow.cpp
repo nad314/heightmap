@@ -3,7 +3,6 @@
 void RenderWindow::onOpening() {
 	Window::onOpening();
 	setTitle("Render Form");
-	setClass("RenderForm");
 	setStyle(WS_CHILD | WS_VISIBLE);
 	setFlags(0);
 }

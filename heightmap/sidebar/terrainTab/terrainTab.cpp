@@ -4,7 +4,6 @@ void TerrainTab::onOpening() {
 	Frame::onOpening();
 	setSize(256, 256);
 	setStyle(WS_CHILD | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
-	setClass("293476892374689236745");
 }
 
 void TerrainTab::onOpened() {

@@ -3,7 +3,6 @@
 void MainWindow::onOpening() {
 	WindowForm::onOpening();
 	setTitle("Core Terrain Editor");
-	setClass("CoreMaterialPreview");
 	setFlags(glw_hidden);
 	setSize(1024, 720);
 }

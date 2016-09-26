@@ -11,7 +11,6 @@ int Program::onDispose() {
 }
 
 int Program::onStart() {
-	core::Debug::enable();
 	if (!wnd.open())
 		return 1;
 	GL::setVsync(0);

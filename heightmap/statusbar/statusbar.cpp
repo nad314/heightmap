@@ -7,7 +7,6 @@ void Statusbar::onOpening() {
 	setSize(256, 256);
 	setStyle(WS_CHILD | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
 	setBackColor(core::Theme::controlBackColor);
-	setClass("MaterialPreviewStatusbar");
 	memset(text, 0, 256);
 }
 
