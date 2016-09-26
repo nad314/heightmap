@@ -13,4 +13,6 @@ public:
 	int onStart() override;
 	int onStop() override;
 	int main() override;
+
+	void load();
 };

@@ -1,16 +1,16 @@
 #pragma once
 
-class Statusbar final : public core::Form, public core::Debugger {
+class Statusbar final : public core::Form, public core::Debugger, public core::Getter<Statusbar> {
 protected:
-	static Statusbar* currentStatusbar;
 	FILE* output;
 	char text[256];
 	std::mutex iomutex;
 public:
 	core::ProgBar progBar;
-	Statusbar() :Form(), Debugger() { 
-		core::Debug::attach(this); 
-		currentStatusbar = this; 
+	Statusbar() :Form(), Debugger() {
+		set(*this);
+		core::Debug::attach(this);
+		core::Debug::enable(); 
 		core::Path::pushDir();
 		core::Path::goHome();
 		core::Path::cd("../data/");
@@ -29,6 +29,5 @@ public:
 	void info(const char* s) override;
 	void error(const char* s) override;
 
-	static inline Statusbar& get() { return *currentStatusbar; }
-	static inline void prog(float amount) { get().progBar.set(amount); }
+	static void prog(const float& amount);
 };

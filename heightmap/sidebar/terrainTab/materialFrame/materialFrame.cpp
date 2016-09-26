@@ -29,28 +29,18 @@ void MaterialFrame::makeButtons() {
 	int c(0);
 	const int bsize = 52;
 	for (auto& i : data.textures) {
-		core::Image* img = new core::Image;
-		i.diffuse.construct(*img);
-		Sidebar::adjustImage(*img, *img, bsize);
-		core::ImageButton* ib = new core::ImageButton;
-		push(ib->make(core::Rect((c % 4)*(bsize+2) + 3, (c / 4)*(bsize + 2) + 2, (c % 4 + 1)*(bsize + 2)+1, ((c / 4) + 1)*(bsize + 2)), img, *this, [](core::Control& c, core::Form& f)->void {
-			MaterialFrame& mf = dynamic_cast<MaterialFrame&>(f);
-			if (!mf) return;
-			int counter(0);
-			for (auto& i : mf.button) {
-				if (i == &c) {
-					i->pin();
-					Storage& data = Controller::get().storage();
-					data.material = data.textures[counter];
-					Controller::get().invalidate();
-					core::Debug::print("Using Material %d\n", counter);
-				}
-				else if (i->pinned())i->unpin();
-				++counter;
-			}
+		MaterialButton* ib = new MaterialButton;
+		push(ib->make(core::Rect((c % 4)*(bsize+2) + 3, (c / 4)*(bsize + 2) + 2, (c % 4 + 1)*(bsize + 2)+1, ((c / 4) + 1)*(bsize + 2)), *this, &i, [](core::Control& c, core::Form& f)->void {
+			MaterialButton& This = dynamic_cast<MaterialButton&>(c);
+			This.get().unpin();
+			This.pin();
+			This.set(This);
+			Storage& data = Controller::get().storage();
+			data.material = *This.mat;
+			Controller::get().invalidate();
+			core::Debug::print("Using Material %d\n", This.mat - data.textures);
+
 		}));
-		ib->prerender();
-		delete img;
 		button.push_back(ib);
 		++c;
 	}

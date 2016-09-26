@@ -47,3 +47,9 @@ void Storage::loadTextureMaterials() {
 	Statusbar::prog(0);
 	core::Debug::print("Loaded Materials.\n");
 }
+
+void Storage::load() {
+	loadTextureMaterials();
+	if (textures.count())
+		material = textures[0];
+}

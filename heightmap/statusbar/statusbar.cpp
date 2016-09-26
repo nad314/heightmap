@@ -1,6 +1,6 @@
 #include <main/main.h>
 
-Statusbar* Statusbar::currentStatusbar = NULL;
+Statusbar* core::Getter<Statusbar>::getter = NULL;
 
 void Statusbar::onOpening() {
 	Form::onOpening();
@@ -60,3 +60,10 @@ void Statusbar::error(const char* s) {
 	std::lock_guard<std::mutex> lock(iomutex);
 	fprintf(output,s);
 }
+
+void Statusbar::prog(const float& amount) { 
+	static std::mutex mutex;
+	std::lock_guard<std::mutex> lock(mutex);
+	get().progBar.set(amount); 
+}
+

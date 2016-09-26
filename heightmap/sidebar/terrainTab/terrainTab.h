@@ -11,5 +11,7 @@ public:
 	int onLButtonDown(const core::eventInfo& e) override;
 	int onLButtonUp(const core::eventInfo& e) override;
 
+	void load();
+
 };
 

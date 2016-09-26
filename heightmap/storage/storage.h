@@ -11,4 +11,5 @@ public:
 	~Storage();
 
 	void loadTextureMaterials();
+	void load();
 };

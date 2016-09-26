@@ -1,11 +1,11 @@
 #include <main\main.h>
 
-Controller* Controller::defController = NULL;
+Controller* core::Getter<Controller>::getter = NULL;
 bool Controller::busy = 0;
 bool Controller::repaint = 0;
 
 Controller::Controller(core::Window* ptr, Storage* storage) {
-	defController = this;
+	set(*this);
 	parent = ptr;
 	parent->attach(this);
 	lpdata = storage;
@@ -35,11 +35,6 @@ void Controller::drawScene() {
 	if (!parent||!repaint)
 		return;
 	if (busy) {
-		if (!isbusy) {
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			GL::swapBuffers(*parent);
-			repaint = 0;
-		}
 		isbusy = 1;
 		return;
 	}
@@ -90,4 +85,14 @@ void Controller::makeImage(core::glTexture& texture, core::Image& image) {
 	texture.dispose();
 	texture.make(image);
 	texture.genMipmaps();
+}
+
+void Controller::lock() {
+	busy = 1;
+	GL::makeCurrent(*get().parent);
+}
+
+void Controller::unlock() {
+	wglMakeCurrent(NULL, NULL);
+	busy = 0;
 }

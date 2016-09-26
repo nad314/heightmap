@@ -139,10 +139,12 @@
     <ClCompile Include="sidebar\terrainTab\materialFrame\materialFrame.cpp" />
     <ClCompile Include="sidebar\sidebar.cpp" />
     <ClCompile Include="sidebar\sidebar.images.cpp" />
+    <ClCompile Include="sidebar\terrainTab\materialFrame\materialFrame.materialButton.cpp" />
     <ClCompile Include="sidebar\terrainTab\terrainTab.cpp" />
     <ClCompile Include="statusbar\statusbar.cpp" />
     <ClCompile Include="storage\storage.cpp" />
     <ClCompile Include="theme\apptheme.cpp" />
+    <ClCompile Include="timerWindow\timerWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controller\controller.h" />
@@ -157,6 +159,7 @@
     <ClInclude Include="statusbar\statusbar.h" />
     <ClInclude Include="storage\storage.h" />
     <ClInclude Include="theme\apptheme.h" />
+    <ClInclude Include="timerWindow\timerWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

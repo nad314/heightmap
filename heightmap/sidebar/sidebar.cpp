@@ -1,6 +1,6 @@
 #include <main/main.h>
 
-Sidebar* Sidebar::currentSidebar = NULL;
+Sidebar* core::Getter<Sidebar>::getter = NULL;
 
 void Sidebar::onOpening() {
 	Frame::onOpening();
@@ -39,4 +39,8 @@ int Sidebar::onResize(const core::eventInfo& e) {
 	Rect fullRect = getClientRect() + Rect(0, 24, 0, 0);
 	terrainTab.move(fullRect);
 	return 0;
+}
+
+void Sidebar::load() {
+	terrainTab.load();
 }

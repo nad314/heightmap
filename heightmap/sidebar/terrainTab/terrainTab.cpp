@@ -11,7 +11,7 @@ void TerrainTab::onOpened() {
 	setBackColor(App::Theme::FormBackColor);
 
 	const int sbw = App::Theme::sidebarWidth - 10;
-	push(matLabel.make(vec4i(2, 2, sbw, 20), "Draw Texture: ", *this));
+	push(matLabel.make(vec4i(2, 2, sbw, 20), "Draw Texture: ", *this).setAlign(1).setColor(core::Theme::constrastBorderColor));
 	Rect next = nextVertical();
 
 	matFrame.setParent(this);
@@ -32,4 +32,8 @@ int TerrainTab::onLButtonUp(const core::eventInfo& e) {
 	if (Controller::get().busy)
 		return e;
 	return Frame::onLButtonUp(e);
+}
+
+void TerrainTab::load() {
+	matFrame.makeButtons();
 }

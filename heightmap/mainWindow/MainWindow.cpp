@@ -8,6 +8,7 @@ void MainWindow::onOpening() {
 }
 
 void MainWindow::onClosing() {
+	timerWindow.close();
 	statusbar.close();
 	sidebar.close();
 	renderWindow.close();
@@ -22,6 +23,8 @@ void MainWindow::onOpened() {
 	sidebar.open();
 	statusbar.setParent(this);
 	statusbar.open();
+	timerWindow.setParent(this);
+	timerWindow.open();
 	reshape();
 }
 
@@ -41,9 +44,10 @@ int MainWindow::onGetMinMaxInfo(const core::eventInfo& e) {
 }
 
 void MainWindow::reshape() {
-	renderWindow.move(vec4i(8, 40, width - 6 - App::Theme::sidebarWidth, height - 30));
+	renderWindow.move(vec4i(8, 40, width - 6 - App::Theme::sidebarWidth, height - 80));
 	sidebar.move(vec4i(width - App::Theme::sidebarWidth, 40, width - 8, height - 30));
 	statusbar.move(vec4i(3, height - 24, width - 3, height-4));
+	timerWindow.move(vec4i(8, height-73, width-6-App::Theme::sidebarWidth, height-30).expand(1));
 }
 
 void MainWindow::onEndPaint(const core::eventInfo& e) {
@@ -52,4 +56,8 @@ void MainWindow::onEndPaint(const core::eventInfo& e) {
 	core::Core2D::drawRect(sidebar.getChildRect().expand(1), core::Color(10), *this);
 	core::Core2D::drawRect(statusbar.getChildRect().expand(1), core::Color(10), *this);
 	InvalidateRect(renderWindow, NULL, false);
+}
+
+void MainWindow::load() {
+	sidebar.load();
 }

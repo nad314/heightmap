@@ -60,6 +60,12 @@
     <ClCompile Include="sidebar\terrainTab\materialFrame\materialFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sidebar\terrainTab\materialFrame\materialFrame.materialButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="timerWindow\timerWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main\main.h">
@@ -96,6 +102,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sidebar\terrainTab\materialFrame\materialFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="timerWindow\timerWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,13 +1,11 @@
 #pragma once
 #include "terrainTab/terrainTab.h"
 
-class Sidebar final : public core::Frame {
-private:
-	static Sidebar* currentSidebar;
+class Sidebar final : public core::Frame, public core::Getter<Sidebar> {
 public:
 	core::Button tabSwitcher;
 	TerrainTab terrainTab;
-	Sidebar() :Frame() { currentSidebar = this; }
+	Sidebar() :Frame() { set(*this); }
 
 	void onOpening() override;
 	void onOpened() override;
@@ -17,5 +15,5 @@ public:
 	int onLButtonDown(const core::eventInfo& e) override;
 	int onLButtonUp(const core::eventInfo& e) override;
 	int onResize(const core::eventInfo& e) override;
-	inline static Sidebar& get() { return *currentSidebar; }
+	void load();
 };

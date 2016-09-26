@@ -25,26 +25,22 @@ int Program::onStart() {
 	controller = new Controller(&wnd.renderWindow, data);
 	ShowWindow(wnd, SW_SHOW);
 	SetForegroundWindow(wnd);
-	Controller::busy = true;
-	Controller::get().drawScene();
+	glClear(GL_COLOR_BUFFER_BIT);
+	GL::swapBuffers(wnd.renderWindow);
 
-	printf("Starting thread...\n");
 	wglMakeCurrent(NULL, NULL);
-	std::thread t([&]{
-		GL::makeCurrent(*Controller::get().getParent());
-		Controller::busy = true;
-		Storage& data = Controller::get().storage();
-		data.loadTextureMaterials();
-		Sidebar::get().terrainTab.matFrame.makeButtons();
-		if (data.textures.count())
-			data.material = data.textures[0];
-		wglMakeCurrent(NULL, NULL);
-		Controller::busy = false;
-		Controller::invalidate();
-		printf("Thread ended\n");
-	});
+	std::thread t(&Program::load, this);
 	t.detach();
+
 	return 0;
+}
+
+void Program::load() {
+	Controller::lock();
+	data->load();
+	wnd.load();
+	Controller::unlock();
+	Controller::invalidate();
 }
 
 int Program::onStop() {

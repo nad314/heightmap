@@ -4,6 +4,7 @@ public:
 	RenderWindow renderWindow;
 	Sidebar sidebar;
 	Statusbar statusbar;
+	TimerWindow timerWindow;
 public:
 	void onOpening() override;
 	void onClosing() override;
@@ -13,5 +14,7 @@ public:
 	int onGetMinMaxInfo(const core::eventInfo& e) override;
 	void onEndPaint(const core::eventInfo& e) override;
 	void reshape();
+
+	void load();
 
 };

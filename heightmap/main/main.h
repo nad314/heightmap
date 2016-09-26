@@ -10,6 +10,7 @@ using namespace core::opengl;
 #include <cube/cube.h>
 
 #include <theme/apptheme.h>
+#include <timerWindow/timerWindow.h>
 #include <sidebar/sidebar.h>
 #include <statusbar/statusbar.h>
 #include <renderWindow/RenderWindow.h>
