@@ -34,12 +34,12 @@ void MaterialFrame::makeButtons() {
 		i.diffuse.construct(*img);
 		Sidebar::adjustImage(*img, *img, bsize);
 		core::ImageButton* ib = new core::ImageButton;
-		push(ib->make(core::Rect((c % 4)*(bsize+2) + 3, (c / 4)*(bsize + 2) + 2, (c % 4 + 1)*(bsize + 2)+1, ((c / 4) + 1)*(bsize + 2)), img, *this, [](core::Form& f)->void {
+		push(ib->make(core::Rect((c % 4)*(bsize+2) + 3, (c / 4)*(bsize + 2) + 2, (c % 4 + 1)*(bsize + 2)+1, ((c / 4) + 1)*(bsize + 2)), img, *this, [](core::Control& c, core::Form& f)->void {
 			MaterialFrame& mf = dynamic_cast<MaterialFrame&>(f);
 			if (!mf) return;
 			int counter(0);
 			for (auto& i : mf.button) {
-				if (i->flags & 4) {
+				if (i == &c) {
 					i->pin();
 					Storage& data = Controller::get().storage();
 					data.material = data.textures[counter];

@@ -36,7 +36,7 @@ int Program::onStart() {
 		Controller::busy = true;
 		Storage& data = Controller::get().storage();
 		data.loadTextureMaterials();
-		Sidebar::get().matFrame.makeButtons();
+		Sidebar::get().terrainTab.matFrame.makeButtons();
 		if (data.textures.count())
 			data.material = data.textures[0];
 		wglMakeCurrent(NULL, NULL);

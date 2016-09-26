@@ -2,10 +2,10 @@
 
 void MainWindow::onOpening() {
 	WindowForm::onOpening();
-	setTitle("Material Preview");
+	setTitle("Core Terrain Editor");
 	setClass("CoreMaterialPreview");
 	setFlags(glw_hidden);
-	setSize(1024, 768);
+	setSize(1024, 720);
 }
 
 void MainWindow::onClosing() {
@@ -42,10 +42,9 @@ int MainWindow::onGetMinMaxInfo(const core::eventInfo& e) {
 }
 
 void MainWindow::reshape() {
-	//MoveWindow(renderWindow.hWnd, 6, 40, width - 12, height - 46, false);
-	SetWindowPos(renderWindow, NULL, 8, 40, width - 16 - App::Theme::sidebarWidth, height - 46 - 24, SWP_NOCOPYBITS|SWP_DEFERERASE|SWP_NOSENDCHANGING);
-	SetWindowPos(sidebar, NULL, width - App::Theme::sidebarWidth, 40, App::Theme::sidebarWidth - 8, height - 46 - 24, SWP_NOCOPYBITS | SWP_DEFERERASE | SWP_NOSENDCHANGING);
-	SetWindowPos(statusbar, NULL, 4, height-24, width - 8, 20, SWP_NOCOPYBITS | SWP_DEFERERASE | SWP_NOSENDCHANGING);
+	renderWindow.move(vec4i(8, 40, width - 6 - App::Theme::sidebarWidth, height - 30));
+	sidebar.move(vec4i(width - App::Theme::sidebarWidth, 40, width - 8, height - 30));
+	statusbar.move(vec4i(3, height - 24, width - 3, height-4));
 }
 
 void MainWindow::onEndPaint(const core::eventInfo& e) {

@@ -54,7 +54,10 @@
     <ClCompile Include="theme\apptheme.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sidebar\materialFrame\materialFrame.cpp">
+    <ClCompile Include="sidebar\terrainTab\terrainTab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sidebar\terrainTab\materialFrame\materialFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,7 +92,10 @@
     <ClInclude Include="theme\apptheme.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sidebar\materialFrame\materialFrame.h">
+    <ClInclude Include="sidebar\terrainTab\terrainTab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sidebar\terrainTab\materialFrame\materialFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

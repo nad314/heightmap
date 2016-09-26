@@ -136,9 +136,10 @@
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="program\program.cpp" />
     <ClCompile Include="renderWindow\RenderWindow.cpp" />
-    <ClCompile Include="sidebar\materialFrame\materialFrame.cpp" />
+    <ClCompile Include="sidebar\terrainTab\materialFrame\materialFrame.cpp" />
     <ClCompile Include="sidebar\sidebar.cpp" />
     <ClCompile Include="sidebar\sidebar.images.cpp" />
+    <ClCompile Include="sidebar\terrainTab\terrainTab.cpp" />
     <ClCompile Include="statusbar\statusbar.cpp" />
     <ClCompile Include="storage\storage.cpp" />
     <ClCompile Include="theme\apptheme.cpp" />
@@ -150,8 +151,9 @@
     <ClInclude Include="main\main.h" />
     <ClInclude Include="program\program.h" />
     <ClInclude Include="renderWindow\RenderWindow.h" />
-    <ClInclude Include="sidebar\materialFrame\materialFrame.h" />
+    <ClInclude Include="sidebar\terrainTab\materialFrame\materialFrame.h" />
     <ClInclude Include="sidebar\sidebar.h" />
+    <ClInclude Include="sidebar\terrainTab\terrainTab.h" />
     <ClInclude Include="statusbar\statusbar.h" />
     <ClInclude Include="storage\storage.h" />
     <ClInclude Include="theme\apptheme.h" />

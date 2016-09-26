@@ -12,21 +12,15 @@ void Sidebar::onOpening() {
 void Sidebar::onOpened() {
 	Frame::onOpened();
 	setBackColor(App::Theme::FormBackColor);
-	
-	const int sbw = App::Theme::sidebarWidth - 10;
-	push(matLabel.make(vec4i(2, 2, sbw, 20), "Draw Texture: ", *this));
-	Rect next = nextVertical();
-
-	matFrame.setParent(this);
-	matFrame.open();
-	push(&matFrame);
-	matFrame.move(next + vec4i(2, 2, sbw, 192));
-
+	push(tabSwitcher.make(vec4i(2, 2, App::Theme::sidebarWidth-12, 22), "Terrain", *this));
+	terrainTab.setParent(this).open();
+	push(&terrainTab);
 	setControlColors();
 }
 
-void Sidebar::onEndPaint(const core::eventInfo& e) {
-	Frame::onEndPaint(e);
+void Sidebar::onClosing() {
+	Frame::onClosing();
+	terrainTab.close();
 }
 
 int Sidebar::onLButtonDown(const core::eventInfo& e) {
@@ -39,4 +33,11 @@ int Sidebar::onLButtonUp(const core::eventInfo& e) {
 	if (Controller::get().busy)
 		return e;
 	return Frame::onLButtonUp(e);
+}
+
+int Sidebar::onResize(const core::eventInfo& e) {
+	Frame::onResize(e);
+	Rect fullRect = getClientRect() + Rect(0, 24, 0, 0);
+	terrainTab.move(fullRect);
+	return 0;
 }
