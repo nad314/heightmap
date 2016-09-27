@@ -3,6 +3,7 @@
 
 class TerrainTab : public core::Frame  {
 public:
+	core::ImageButton matButton;
 	core::Label matLabel;
 	MaterialFrame matFrame;
 

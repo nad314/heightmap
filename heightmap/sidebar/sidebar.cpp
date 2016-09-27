@@ -11,7 +11,7 @@ void Sidebar::onOpening() {
 void Sidebar::onOpened() {
 	Frame::onOpened();
 	setBackColor(App::Theme::FormBackColor);
-	push(tabSwitcher.make(vec4i(2, 2, App::Theme::sidebarWidth-12, 22), "Terrain", *this));
+	push(tabSwitcher.make(vec4i(4, 2, App::Theme::sidebarClientWidth-4, 22), "Terrain", *this));
 	terrainTab.setParent(this).open();
 	push(&terrainTab);
 	setControlColors();
