@@ -41,8 +41,6 @@ void TerrainTab::onOpened() {
 	matFrame.open();
 	push(&matFrame);
 	matFrame.move(next + vec4i(4, 2, sbw-4, 192));
-
-	setControlColors();
 }
 
 int TerrainTab::onLButtonDown(const core::eventInfo& e) {

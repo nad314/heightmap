@@ -21,7 +21,7 @@ void MaterialFrame::onClosed() {
 
 void MaterialFrame::onEndPaint(const core::eventInfo& e) {
 	Frame::onEndPaint(e);
-	core::Core2D::drawRect(getClientRect(), core::Theme::controlBorderColor, *this);
+	//core::Core2D::drawRect(getClientRect(), core::Theme::controlBorderColor, *this);
 }
 
 void MaterialFrame::makeButtons() {
