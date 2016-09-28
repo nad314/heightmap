@@ -13,13 +13,15 @@ void TerrainTab::onOpened() {
 	const int sbw = App::Theme::sidebarClientWidth;
 	core::Image img;
 	img.make(18, 18, 32);
+	vec4b clr = vec4b(64, 64, 68, 255);
+	clr = core::Theme::backColor;
 	//core::Core2D::fillRect(vec4i(3, 3, 16, 16), vec4b(64, 64, 68, 255), img);
-	core::Core2D::fillRect(vec4i(0, 0, 18, 3), vec4b(64, 64, 68, 255), img);
-	core::Core2D::fillRect(vec4i(0, 16, 18, 18), vec4b(64, 64, 68, 255), img);
-	core::Core2D::fillRect(vec4i(0, 0, 3, 18), vec4b(64, 64, 68, 255), img);
-	core::Core2D::fillRect(vec4i(16, 0, 18, 18), vec4b(64, 64, 68, 255), img);
-	core::Core2D::drawRect(vec4i(2, 2, 16, 16), core::Theme::controlBorderColor, img);
-	core::Core2D::drawRect(vec4i(0, 0, 18, 18), core::Theme::controlBorderColor, img);
+	core::Core2D::fillRect(vec4i(0, 0, 18, 4), clr, img);
+	core::Core2D::fillRect(vec4i(0, 14, 18, 18), clr, img);
+	core::Core2D::fillRect(vec4i(0, 0, 4, 18), clr, img);
+	core::Core2D::fillRect(vec4i(14, 0, 18, 18), clr, img);
+	//core::Core2D::drawRect(vec4i(3, 3, 15, 15), core::Theme::controlBorderColor, img);
+	core::Core2D::drawRect(vec4i(0, 0, 18, 18), /*core::Theme::controlBorderColor*/App::Theme::FormBackColor, img);
 	//Sidebar::adjustImage(img, img, 18);
 	
 
@@ -32,6 +34,7 @@ void TerrainTab::onOpened() {
 		}
 		catch (std::bad_cast& e) { core::Debug::error("%s\n", e.what()); }
 	}));
+	matButton.setBackColorHover(core::Theme::constrastBorderColor);
 	matButton.prerender();
 
 	push(matLabel.make(vec4i(26, 4, sbw, 22), "Draw Texture: ", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
@@ -40,7 +43,7 @@ void TerrainTab::onOpened() {
 	matFrame.setParent(this);
 	matFrame.open();
 	push(&matFrame);
-	matFrame.move(next + vec4i(4, 2, sbw-4, 192));
+	matFrame.move(next + vec4i(4, 4, sbw-4, 164));
 }
 
 int TerrainTab::onLButtonDown(const core::eventInfo& e) {

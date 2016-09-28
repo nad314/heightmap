@@ -27,10 +27,14 @@ void MaterialFrame::onEndPaint(const core::eventInfo& e) {
 void MaterialFrame::makeButtons() {
 	Storage& data = Controller::get().storage();
 	int c(0);
-	const int bsize = 52;
+	const int margin = 4;
+	const int bsize = 56;
 	for (auto& i : data.textures) {
 		MaterialButton* ib = new MaterialButton;
-		push(ib->make(core::Rect((c % 4)*(bsize+2) + 3, (c / 4)*(bsize + 2) + 2, (c % 4 + 1)*(bsize + 2)+1, ((c / 4) + 1)*(bsize + 2)), *this, &i, [](core::Control& c, core::Form& f)->void {
+		vec4i rect = vec4i(c%4, c/4, c%4+1, c/4+1);
+		rect *= vec4i(bsize-margin);
+		rect += vec4i(margin, margin, 0, 0);
+		push(ib->make(rect, *this, &i, [](core::Control& c, core::Form& f)->void {
 			MaterialButton& This = dynamic_cast<MaterialButton&>(c);
 			This.get().unpin();
 			This.pin();
