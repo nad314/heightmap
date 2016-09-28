@@ -30,9 +30,9 @@ void TimerWindow::onEndPaint(const core::eventInfo& e) {
 int TimerWindow::onResize(const core::eventInfo& e) {
 	Form::onResize(e);
 	const int labelWidth = 92;
-	daySlider.move(vec4i(labelWidth + 2, 2, width-2, 22));
-	yearSlider.move(vec4i(labelWidth + 2, 23, width - 2, 43));
-	dayLabel.move(vec4i(4, 2, labelWidth, 22));
-	yearLabel.move(vec4i(4, 23, labelWidth, 43));
+	daySlider.move(vec4i(labelWidth + 2, 2, width - 8, 22));
+	yearSlider.move(vec4i(labelWidth + 2, 23, width - 8, 43));
+	dayLabel.move(vec4i(8, 2, labelWidth, 22));
+	yearLabel.move(vec4i(8, 23, labelWidth, 43));
 	return 0;
 }
