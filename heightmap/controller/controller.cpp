@@ -17,8 +17,8 @@ Controller::Controller(core::Window* ptr, Storage* storage) {
 
 	initGL();
 	rotation.init();
-	rotation.rotate(15.0f, 1.0f, 0.0f, 0.0f);
-	rotation.rotate(-20.0f, 0.0f, 1.0f, 0.0f);
+	rotation.rotate(30.0f, 1.0f, 0.0f, 0.0f);
+	rotation.rotate(-30.0f, 0.0f, 1.0f, 0.0f);
 	translation.init();
 	translation.translate(0.0f, 0.0f, -6.0f);
 	lpdata->view.perspective(*parent, 41.5f, 0.1f, 100.0f);
@@ -47,14 +47,15 @@ void Controller::drawScene() {
 	glEnable(GL_DEPTH_TEST);
 	data.shader.start();
 	glExt::activeTexture(GL_TEXTURE0);
-	data.material.diffuse.bind();
+	data.chunk.material.diffuse.bind();
 	glExt::activeTexture(GL_TEXTURE1);
-	data.material.normal.bind();
+	data.chunk.material.normal.bind();
 	data.view.sendTo(data.shader, "modelview", "projection");
 	glExt::uniform1i(glExt::getUniformLocation(data.shader, "diffuseMap"), 0);
 	glExt::uniform1i(glExt::getUniformLocation(data.shader, "normalMap"), 1);
-	glExt::uniform1f(glExt::getUniformLocation(data.shader, "scale"), data.material.scale.x);
-	data.model.drawTris();
+	glExt::uniform1f(glExt::getUniformLocation(data.shader, "scale"), data.chunk.material.scale.x);
+	//data.model.drawTris();
+	data.chunk.draw();
 	data.shader.stop();
 	core::glTexture::unbind();
 	glDisable(GL_DEPTH_TEST);

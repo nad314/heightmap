@@ -52,4 +52,5 @@ void Storage::load() {
 	loadTextureMaterials();
 	if (textures.count())
 		material = textures[0];
+	chunk.buildSimple(vec4(-1, 1, 1, -1), shader);
 }

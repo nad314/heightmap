@@ -129,6 +129,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="chunk\chunk.cpp" />
     <ClCompile Include="controller\controller.cpp" />
     <ClCompile Include="controller\controller.events.cpp" />
     <ClCompile Include="cube\cube.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="timerWindow\timerWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="chunk\chunk.h" />
     <ClInclude Include="controller\controller.h" />
     <ClInclude Include="cube\cube.h" />
     <ClInclude Include="mainWindow\MainWindow.h" />

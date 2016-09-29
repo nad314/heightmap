@@ -5,6 +5,11 @@
 #include <thread>
 #include <mutex>
 using namespace core::opengl;
+using namespace coreTypes;
+
+
+//craft
+#include <chunk/chunk.h>
 
 //models
 #include <cube/cube.h>
@@ -19,6 +24,7 @@ using namespace core::opengl;
 #include <storage/storage.h>
 #include <controller/controller.h>
 #include <program/program.h>
+
 
 using namespace coreTypes;
 
