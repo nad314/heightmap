@@ -8,6 +8,9 @@ Storage::Storage() {
 	if (!shader.load("shaders/default/vertex.glsl", "shaders/default/fragment.glsl", "fragColor"))
 		core::Debug::error("Could not load shaders\n");
 	else shader.printDebugInfo();
+	if (!compute.load("shaders/compute/drawTexture.glsl"))
+		core::Debug::error("Could not load compute shader\n");
+	else compute.printDebugInfo();
 	model.make(cube, shader, "pos", "nor", "tan", "btan", "tex");
 	core::Path::popDir();
 }
@@ -53,4 +56,19 @@ void Storage::load() {
 	if (textures.count())
 		material = textures[0];
 	chunk.buildSimple(vec4(-1, 1, 1, -1), shader);
+
+	vec2 imageSize = vec2(512);
+	vec2 pos = vec2(0.0f);
+	vec4 rect = vec4(-1, 1, 1, -1);
+	compute.start();
+	glExt::uniform2fv(glExt::getUniformLocation(compute, "cursor"), 1, pos);
+	glExt::uniform4fv(glExt::getUniformLocation(compute, "rect"), 1, rect);
+	glExt::uniform2fv(glExt::getUniformLocation(compute, "texSize"), 1, imageSize);
+	glExt::uniform2fv(glExt::getUniformLocation(compute, "texScale"), 1, material.scale);
+	glExt::bindImageTexture(1, chunk.material.diffuse, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA8);
+	glExt::bindImageTexture(2, chunk.material.normal, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA8);
+	glExt::bindImageTexture(3, material.diffuse, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
+	glExt::bindImageTexture(4, material.normal, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
+	glExt::dispatchCompute(512 / 16, 512 / 16, 1);
+	compute.stop();
 }
