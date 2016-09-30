@@ -20,7 +20,7 @@ Controller::Controller(core::Window* ptr, Storage* storage) {
 	rotation.rotate(30.0f, 1.0f, 0.0f, 0.0f);
 	rotation.rotate(-30.0f, 0.0f, 1.0f, 0.0f);
 	translation.init();
-	translation.translate(0.0f, 0.0f, -6.0f);
+	translation.translate(0.0f, 0.0f, -4.0f);
 	lpdata->view.perspective(*parent, 41.5f, 0.1f, 100.0f);
 	lpdata->view.modelview = rotation*translation;
 }

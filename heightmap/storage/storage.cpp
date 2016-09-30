@@ -60,15 +60,21 @@ void Storage::load() {
 	vec2 imageSize = vec2(512);
 	vec2 pos = vec2(0.0f);
 	vec4 rect = vec4(-1, 1, 1, -1);
+	vec2 chunkPos = vec2(0.0f);
 	compute.start();
 	glExt::uniform2fv(glExt::getUniformLocation(compute, "cursor"), 1, pos);
 	glExt::uniform4fv(glExt::getUniformLocation(compute, "rect"), 1, rect);
 	glExt::uniform2fv(glExt::getUniformLocation(compute, "texSize"), 1, imageSize);
 	glExt::uniform2fv(glExt::getUniformLocation(compute, "texScale"), 1, material.scale);
+	glExt::uniform2fv(glExt::getUniformLocation(compute, "chunkPos"), 1, chunkPos);
+
+	glExt::uniform1i(glExt::getUniformLocation(compute, "matDiffuse"), 0);
+	glExt::uniform1i(glExt::getUniformLocation(compute, "matNormal"), 1);
+	material.diffuse.bind(0);
+	material.normal.bind(1);
+
 	glExt::bindImageTexture(1, chunk.material.diffuse, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA8);
 	glExt::bindImageTexture(2, chunk.material.normal, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA8);
-	glExt::bindImageTexture(3, material.diffuse, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
-	glExt::bindImageTexture(4, material.normal, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA8);
-	glExt::dispatchCompute(512 / 16, 512 / 16, 1);
+	glExt::dispatchCompute((int)imageSize.x / 16, (int)imageSize.y / 16, 1);
 	compute.stop();
 }
