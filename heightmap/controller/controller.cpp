@@ -23,12 +23,15 @@ Controller::Controller(core::Window* ptr, Storage* storage) {
 	translation.translate(0.0f, 0.0f, -4.0f);
 	lpdata->view.perspective(*parent, 41.5f, 0.1f, 100.0f);
 	lpdata->view.modelview = rotation*translation;
+
+	tool = NULL;
 }
 
 Controller::~Controller() {
 	if (parent)
 		parent->detach();
 	lpdata = NULL;
+	delete tool;
 }
 
 void Controller::drawScene() {

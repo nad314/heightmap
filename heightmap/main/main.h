@@ -23,6 +23,7 @@ using namespace coreTypes;
 
 #include <storage/storage.h>
 #include <controller/controller.h>
+#include <tool/materialTool.h>
 #include <program/program.h>
 
 

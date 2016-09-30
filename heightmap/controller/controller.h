@@ -8,6 +8,7 @@ protected:
 	core::vec2i mpos;
 	bool dragging;
 	bool isbusy = 0;
+	core::EventListener* tool = NULL;
 
 	core::matrixf rotation, translation;
 

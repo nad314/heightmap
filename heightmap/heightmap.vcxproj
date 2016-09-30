@@ -146,6 +146,7 @@
     <ClCompile Include="storage\storage.cpp" />
     <ClCompile Include="theme\apptheme.cpp" />
     <ClCompile Include="timerWindow\timerWindow.cpp" />
+    <ClCompile Include="tool\materialTool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chunk\chunk.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="storage\storage.h" />
     <ClInclude Include="theme\apptheme.h" />
     <ClInclude Include="timerWindow\timerWindow.h" />
+    <ClInclude Include="tool\materialTool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

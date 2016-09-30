@@ -63,13 +63,14 @@ void Storage::load() {
 	vec2 chunkPos = vec2(0.0f);
 	compute.start();
 	glExt::uniform2fv(glExt::getUniformLocation(compute, "cursor"), 1, pos);
+	glExt::uniform1f(glExt::getUniformLocation(compute, "radius"), 1.0f);
 	glExt::uniform4fv(glExt::getUniformLocation(compute, "rect"), 1, rect);
 	glExt::uniform2fv(glExt::getUniformLocation(compute, "texSize"), 1, imageSize);
-	glExt::uniform2fv(glExt::getUniformLocation(compute, "texScale"), 1, material.scale);
 	glExt::uniform2fv(glExt::getUniformLocation(compute, "chunkPos"), 1, chunkPos);
 
 	glExt::uniform1i(glExt::getUniformLocation(compute, "matDiffuse"), 0);
 	glExt::uniform1i(glExt::getUniformLocation(compute, "matNormal"), 1);
+	glExt::uniform2fv(glExt::getUniformLocation(compute, "matScale"), 1, material.scale);
 	material.diffuse.bind(0);
 	material.normal.bind(1);
 
@@ -78,3 +79,4 @@ void Storage::load() {
 	glExt::dispatchCompute((int)imageSize.x / 16, (int)imageSize.y / 16, 1);
 	compute.stop();
 }
+
