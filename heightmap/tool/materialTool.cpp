@@ -26,24 +26,8 @@ MaterialTool::MaterialTool() {
 
 MaterialTool::~MaterialTool() {}
 
-int MaterialTool::onPaint(const core::eventInfo& e) {
-	return 0;
-}
 
-int MaterialTool::onLButtonDown(const core::eventInfo& e) {
-	lpos = mpos;
-	drawing = 1;
-	return 0;
-}
-
-int MaterialTool::onLButtonUp(const core::eventInfo& e) {
-	drawing = 0;
-	return 0;
-}
-
-int MaterialTool::onMouseMove(const core::eventInfo& e) {
-	mpos = core::vec2i(LOWORD(e.lP), HIWORD(e.lP));
-	if (!drawing) return 0;
+bool MaterialTool::raytrace(vec3& point) {
 	Storage& data = Controller::get().storage();
 	matrixf invmat = data.view.modelview*data.view.projection;
 	invmat.invert();
@@ -54,9 +38,31 @@ int MaterialTool::onMouseMove(const core::eventInfo& e) {
 	r1 = (r1 - r0).normalize3d();
 	float t = core::Math::rayPlaneT(r0.xyz(), r1.xyz(), vec4(0, 1, 0, 0));
 	if (t < 0.0f) return 0;
-
-	vec3 point = r0.xyz() + r1.xyz()*t;
-	data.sendCompute(point);
-	return 0;
+	point = r0.xyz() + r1.xyz()*t;
+	return 1;
 }
 
+MaterialTool& MaterialTool::sendCompute(const vec3& point) {
+	vec2 imageSize = vec2(512);
+	vec4 rect = vec4(-1, 1, 1, -1);
+	vec2 chunkPos = vec2(0.0f);
+	Storage& data = Controller::get().storage();
+	compute.start();
+	glExt::uniform2fv(glExt::getUniformLocation(compute, "cursor"), 1, vec2(point.x, point.z));
+	glExt::uniform2fv(glExt::getUniformLocation(compute, "brush"), 1, brush.metrics);
+	glExt::uniform4fv(glExt::getUniformLocation(compute, "rect"), 1, rect);
+	glExt::uniform2fv(glExt::getUniformLocation(compute, "texSize"), 1, imageSize);
+	glExt::uniform2fv(glExt::getUniformLocation(compute, "chunkPos"), 1, chunkPos);
+
+	glExt::uniform1i(glExt::getUniformLocation(compute, "matDiffuse"), 0);
+	glExt::uniform1i(glExt::getUniformLocation(compute, "matNormal"), 1);
+	glExt::uniform2fv(glExt::getUniformLocation(compute, "matScale"), 1, data.material.scale);
+	data.material.diffuse.bind(0);
+	data.material.normal.bind(1);
+
+	glExt::bindImageTexture(1, data.chunk.material.diffuse, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA8);
+	glExt::bindImageTexture(2, data.chunk.material.normal, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA8);
+	glExt::dispatchCompute((int)imageSize.x / 16, (int)imageSize.y / 16, 1);
+	compute.stop();
+	return *this;
+}

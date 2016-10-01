@@ -147,6 +147,7 @@
     <ClCompile Include="theme\apptheme.cpp" />
     <ClCompile Include="timerWindow\timerWindow.cpp" />
     <ClCompile Include="tool\materialTool.cpp" />
+    <ClCompile Include="tool\materialTool.events.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chunk\chunk.h" />

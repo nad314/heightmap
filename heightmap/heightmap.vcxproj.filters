@@ -72,6 +72,9 @@
     <ClCompile Include="tool\materialTool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tool\materialTool.events.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main\main.h">
