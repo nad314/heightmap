@@ -24,7 +24,7 @@ Controller::Controller(core::Window* ptr, Storage* storage) {
 	lpdata->view.perspective(*parent, 41.5f, 0.1f, 100.0f);
 	lpdata->view.modelview = rotation*translation;
 
-	tool = NULL;
+	tool = new MaterialTool;
 }
 
 Controller::~Controller() {

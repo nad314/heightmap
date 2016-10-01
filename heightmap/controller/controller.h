@@ -22,6 +22,8 @@ public:
 	int onResize(const core::eventInfo& e) override;
 	int onLButtonDown(const core::eventInfo& e) override;
 	int onLButtonUp(const core::eventInfo& e) override;
+	int onRButtonDown(const core::eventInfo& e) override;
+	int onRButtonUp(const core::eventInfo& e) override;
 	int onMouseMove(const core::eventInfo& e) override;
 
 	void drawScene();

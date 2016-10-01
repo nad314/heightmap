@@ -25,3 +25,38 @@ MaterialTool::MaterialTool() {
 }
 
 MaterialTool::~MaterialTool() {}
+
+int MaterialTool::onPaint(const core::eventInfo& e) {
+	return 0;
+}
+
+int MaterialTool::onLButtonDown(const core::eventInfo& e) {
+	lpos = mpos;
+	drawing = 1;
+	return 0;
+}
+
+int MaterialTool::onLButtonUp(const core::eventInfo& e) {
+	drawing = 0;
+	return 0;
+}
+
+int MaterialTool::onMouseMove(const core::eventInfo& e) {
+	mpos = core::vec2i(LOWORD(e.lP), HIWORD(e.lP));
+	if (!drawing) return 0;
+	Storage& data = Controller::get().storage();
+	matrixf invmat = data.view.modelview*data.view.projection;
+	invmat.invert();
+	vec4 r0 = invmat*data.view.unproject(vec4((float)mpos.x, (float)Controller::get().getParent()->height - mpos.y, 0.0f, 1.0f), *Controller::get().getParent());
+	r0 /= r0.w;
+	vec4 r1 = invmat*data.view.unproject(vec4((float)mpos.x, (float)Controller::get().getParent()->height - mpos.y, 1.0f, 1.0f), *Controller::get().getParent());
+	r1 /= r1.w;
+	r1 = (r1 - r0).normalize3d();
+	float t = core::Math::rayPlaneT(r0.xyz(), r1.xyz(), vec4(0, 1, 0, 0));
+	if (t < 0.0f) return 0;
+
+	vec3 point = r0.xyz() + r1.xyz()*t;
+	data.sendCompute(point);
+	return 0;
+}
+
