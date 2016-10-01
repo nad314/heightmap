@@ -15,4 +15,5 @@ public:
 
 	void loadTextureMaterials();
 	void load();
+	void sendCompute(const vec3& pos);
 };

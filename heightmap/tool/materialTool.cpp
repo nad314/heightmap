@@ -13,7 +13,7 @@ MaterialTool::MaterialTool() {
 
 	compute.start();
 	uniform[0] = glExt::getUniformLocation(compute, "cursor");
-	uniform[7] = glExt::getUniformLocation(compute, "radius");
+	uniform[7] = glExt::getUniformLocation(compute, "brush");
 	uniform[1] = glExt::getUniformLocation(compute, "rect");
 	uniform[2] = glExt::getUniformLocation(compute, "texSize");
 	uniform[4] = glExt::getUniformLocation(compute, "chunkPos");

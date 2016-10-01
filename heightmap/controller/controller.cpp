@@ -17,7 +17,7 @@ Controller::Controller(core::Window* ptr, Storage* storage) {
 
 	initGL();
 	rotation.init();
-	rotation.rotate(30.0f, 1.0f, 0.0f, 0.0f);
+	rotation.rotate(45.0f, 1.0f, 0.0f, 0.0f);
 	rotation.rotate(-30.0f, 0.0f, 1.0f, 0.0f);
 	translation.init();
 	translation.translate(0.0f, 0.0f, -4.0f);
@@ -62,6 +62,7 @@ void Controller::drawScene() {
 	data.shader.stop();
 	core::glTexture::unbind();
 	glDisable(GL_DEPTH_TEST);
+
 	GL::swapBuffers(*parent);
 	repaint = 0;
 }

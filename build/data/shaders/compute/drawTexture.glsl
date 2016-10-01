@@ -8,7 +8,7 @@ uniform sampler2D matNormal;
 uniform vec2 matScale; //material.scale
 
 uniform vec2 cursor; //3D position of cursor
-uniform float radius; //brush radius
+uniform vec2 brush; //(radius, intensity)
 uniform vec4 rect; //3D rect
 uniform vec2 texSize; //2D integer texture size
 uniform vec2 chunkPos; //xy position of the chunk
@@ -23,7 +23,7 @@ void main() {
 	vec2 phi = vec2(pos.x, pos.y)/texSize;
 	vec2 theta = vec2(rect.z-rect.x, rect.w-rect.y);
 	vec2 pixelPos = phi*theta + vec2(rect.x, rect.y);
-	float dist = clamp(1.0-length(cursor-pixelPos)/radius, 0.0, 1.0);
+	float dist = clamp((1.0-length(cursor-pixelPos)/brush.x)*brush.y, 0.0, 1.0);
 
 	vec4 c = imageLoad(difIn, pos);
 	vec4 n = imageLoad(norIn, pos);
