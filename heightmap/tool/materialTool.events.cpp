@@ -1,6 +1,7 @@
 #include <main/main.h>
 
 int MaterialTool::onPaint(const core::eventInfo& e) {
+	if (traced) drawBrush(position);
 	return 0;
 }
 
@@ -16,13 +17,14 @@ int MaterialTool::onLButtonUp(const core::eventInfo& e) {
 }
 
 int MaterialTool::onMouseMove(const core::eventInfo& e) {
+	Controller::invalidate();
 	mpos = core::vec2i(LOWORD(e.lP), HIWORD(e.lP));
+	traced = raytrace(position);
 	if (!drawing) return 0;
 	Storage& data = Controller::get().storage();
-	vec3 point;
-	if (!raytrace(point) || (point - lastPoint).length() < 0.25f)
+	if (!traced || (position - lastPoint).length() < 0.25f)
 		return 0;
-	lastPoint = point;
-	sendCompute(point);
+	lastPoint = position;
+	sendCompute(position);
 	return 0;
 }

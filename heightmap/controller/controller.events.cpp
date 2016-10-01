@@ -50,13 +50,11 @@ int Controller::onMouseMove(const core::eventInfo& e) {
 		lpdata->view.modelview = rotation*translation;
 		invalidate();
 	}
-	invalidate(); //remove after debug state
-
 	return EventListener::onMouseMove(e);
 }
 
 
 int Controller::onPaint(const core::eventInfo& e) {
-	drawScene();
+	drawScene(e);
 	return EventListener::onPaint(e);
 }

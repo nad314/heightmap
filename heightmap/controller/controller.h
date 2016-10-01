@@ -26,7 +26,7 @@ public:
 	int onRButtonUp(const core::eventInfo& e) override;
 	int onMouseMove(const core::eventInfo& e) override;
 
-	void drawScene();
+	void drawScene(const core::eventInfo& e);
 	void initGL();
 	static inline void invalidate() { repaint = 1; }
 	inline Storage& storage() { return *lpdata; }

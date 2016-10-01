@@ -34,7 +34,7 @@ Controller::~Controller() {
 	delete tool;
 }
 
-void Controller::drawScene() {
+void Controller::drawScene(const core::eventInfo& e) {
 	if (!parent||!repaint)
 		return;
 	if (busy) {
@@ -62,6 +62,8 @@ void Controller::drawScene() {
 	data.shader.stop();
 	core::glTexture::unbind();
 	glDisable(GL_DEPTH_TEST);
+
+	if (tool) tool->onPaint(e);
 
 	GL::swapBuffers(*parent);
 	repaint = 0;

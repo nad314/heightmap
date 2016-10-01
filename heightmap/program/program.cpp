@@ -54,10 +54,11 @@ int Program::onStop() {
 
 int Program::main() {
 	bool done(0);
+	core::eventInfo e(NULL, NULL, 0, 0);
 	while (!done) {
 		if (wnd.peekMessageAsync(done, Controller::busy))
 			continue;
-		controller->drawScene();
+		controller->drawScene(e);
 		Sleep(5);
 	}
 	return 0;
