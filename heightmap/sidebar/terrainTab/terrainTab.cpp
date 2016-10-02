@@ -24,7 +24,7 @@ void TerrainTab::onOpened() {
 	core::Core2D::drawRect(vec4i(0, 0, 18, 18), /*core::Theme::controlBorderColor*/App::Theme::FormBackColor, img);
 	//Sidebar::adjustImage(img, img, 18);
 	
-
+	/*
 	push(matButton.make(vec4i(4, 4, 22, 22), &img, *this, [](core::Control& c, core::Form& f)->void {
 		try {
 			core::ImageButton& This = dynamic_cast<core::ImageButton&>(c);
@@ -36,6 +36,7 @@ void TerrainTab::onOpened() {
 	}));
 	matButton.setBackColorHover(core::Theme::constrastBorderColor);
 	matButton.prerender();
+	*/
 
 	push(matLabel.make(vec4i(26, 4, sbw, 22), "Draw Texture: ", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
 
@@ -44,6 +45,39 @@ void TerrainTab::onOpened() {
 	matFrame.open();
 	push(&matFrame);
 	matFrame.move(next + vec4i(4, 4, sbw-4, 164));
+
+	next = nextVertical();
+	push(brushLabel[0].make(next + vec4i(4, 4, 80, 24), "Size:", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
+	push(brushSlider[0].make(next + vec4i(88, 4, sbw - 4, 24), 0, *this, [](float pos, core::Control& c, core::Form& f)->void {
+		try {
+			MaterialTool* tool = dynamic_cast<MaterialTool*>(Controller::get().getTool());
+			tool->brush.metrics.x = pos;
+			Controller::get().invalidate();
+		}
+		catch (std::bad_cast e) { core::Debug::log("%s\n", e.what()); }
+	}));
+	next = nextVertical();
+	push(brushLabel[1].make(next + vec4i(4, 4, 80, 24), "Intensity:", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
+	push(brushSlider[1].make(next + vec4i(88, 4, sbw - 4, 24), 0, *this, [](float pos, core::Control& c, core::Form& f)->void {
+		try {
+			MaterialTool* tool = dynamic_cast<MaterialTool*>(Controller::get().getTool());
+			tool->brush.metrics.y = pos;
+			Controller::get().invalidate();
+		}
+		catch (std::bad_cast e) { core::Debug::log("%s\n", e.what()); }
+	}));
+	next = nextVertical();
+	push(brushLabel[2].make(next + vec4i(4, 4, 80, 24), "Step:", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
+	push(brushSlider[2].make(next + vec4i(88, 4, sbw - 4, 24), 11, *this, [](float pos, core::Control& c, core::Form& f)->void {
+		try {
+			MaterialTool* tool = dynamic_cast<MaterialTool*>(Controller::get().getTool());
+			tool->brush.step = pos;
+			Controller::get().invalidate();
+		}
+		catch (std::bad_cast e) { core::Debug::log("%s\n", e.what()); }
+	}));
+	
+	setControlColors();
 }
 
 int TerrainTab::onLButtonDown(const core::eventInfo& e) {
@@ -60,4 +94,16 @@ int TerrainTab::onLButtonUp(const core::eventInfo& e) {
 
 void TerrainTab::load() {
 	matFrame.makeButtons();
+	adjustSliders();
+}
+
+void TerrainTab::adjustSliders() {
+	try {
+		MaterialTool* tool = dynamic_cast<MaterialTool*>(Controller::get().getTool());
+		if (!tool) return;
+		brushSlider[0].setPos(tool->brush.metrics.x);
+		brushSlider[1].setPos(tool->brush.metrics.y);
+		brushSlider[2].setPos(tool->brush.step);
+	}
+	catch (std::bad_cast e) { core::Debug::log("%s\n", e.what()); }
 }

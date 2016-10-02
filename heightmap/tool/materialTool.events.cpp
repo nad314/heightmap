@@ -22,7 +22,7 @@ int MaterialTool::onMouseMove(const core::eventInfo& e) {
 	traced = raytrace(position);
 	if (!drawing) return 0;
 	Storage& data = Controller::get().storage();
-	if (!traced || (position - lastPoint).length() < 0.25f)
+	if (!traced || (position - lastPoint).length() < brush.step*brush.metrics.x)
 		return 0;
 	lastPoint = position;
 	sendCompute(position);

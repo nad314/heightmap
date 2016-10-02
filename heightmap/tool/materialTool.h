@@ -19,7 +19,8 @@ public:
 
 	struct Brush {
 		vec2 metrics; //(radius, intensity)
-		Brush() : metrics(1.0f, 0.5f) {}
+		float step; //percent of radius needed to travel to draw
+		Brush() : metrics(0.5f, 0.5f), step(0.2f) {}
 	} brush;
 
 	MaterialTool();

@@ -34,6 +34,7 @@ public:
 	void clearTextures();
 	void makeImage(core::glTexture& texture, core::Image& image);
 	inline core::Window* getParent() { return parent; }
+	inline core::EventListener* getTool() { return tool; }
 
 	static void lock();
 	static void unlock();
