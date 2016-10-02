@@ -42,11 +42,11 @@ void MaterialFrame::makeButtons() {
 			Storage& data = Controller::get().storage();
 			data.material = *This.mat;
 			Controller::get().invalidate();
-			core::Debug::print("Using Material %d\n", This.mat - data.textures);
-
+			//core::Debug::print("Using Material %d\n", This.mat - data.textures);
 		}));
 		button.push_back(ib);
 		++c;
 	}
+	button[0]->pin();
 	invalidate();
 }

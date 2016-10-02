@@ -8,6 +8,10 @@ int MaterialTool::onPaint(const core::eventInfo& e) {
 int MaterialTool::onLButtonDown(const core::eventInfo& e) {
 	lpos = mpos;
 	drawing = raytrace(lastPoint);
+	if (drawing) {
+		sendCompute(lastPoint);
+		Controller::get().invalidate();
+	}
 	return 0;
 }
 

@@ -47,8 +47,8 @@ void TerrainTab::onOpened() {
 	matFrame.move(next + vec4i(4, 4, sbw-4, 164));
 
 	next = nextVertical();
-	push(brushLabel[0].make(next + vec4i(4, 4, 80, 24), "Size:", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
-	push(brushSlider[0].make(next + vec4i(88, 4, sbw - 4, 24), 0, *this, [](float pos, core::Control& c, core::Form& f)->void {
+	push(brushLabel[0].make(next + vec4i(4, 4, 60, 24), "Size:", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
+	push(brushSlider[0].make(next + vec4i(68, 4, sbw - 4, 24), 0, *this, [](float pos, core::Control& c, core::Form& f)->void {
 		try {
 			MaterialTool* tool = dynamic_cast<MaterialTool*>(Controller::get().getTool());
 			tool->brush.metrics.x = pos;
@@ -57,8 +57,8 @@ void TerrainTab::onOpened() {
 		catch (std::bad_cast e) { core::Debug::log("%s\n", e.what()); }
 	}));
 	next = nextVertical();
-	push(brushLabel[1].make(next + vec4i(4, 4, 80, 24), "Intensity:", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
-	push(brushSlider[1].make(next + vec4i(88, 4, sbw - 4, 24), 0, *this, [](float pos, core::Control& c, core::Form& f)->void {
+	push(brushLabel[1].make(next + vec4i(4, 4, 60, 24), "Opacity:", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
+	push(brushSlider[1].make(next + vec4i(68, 4, sbw - 4, 24), 0, *this, [](float pos, core::Control& c, core::Form& f)->void {
 		try {
 			MaterialTool* tool = dynamic_cast<MaterialTool*>(Controller::get().getTool());
 			tool->brush.metrics.y = pos;
@@ -67,8 +67,8 @@ void TerrainTab::onOpened() {
 		catch (std::bad_cast e) { core::Debug::log("%s\n", e.what()); }
 	}));
 	next = nextVertical();
-	push(brushLabel[2].make(next + vec4i(4, 4, 80, 24), "Step:", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
-	push(brushSlider[2].make(next + vec4i(88, 4, sbw - 4, 24), 11, *this, [](float pos, core::Control& c, core::Form& f)->void {
+	push(brushLabel[2].make(next + vec4i(4, 4, 60, 24), "Step:", *this).setAlign(0).setColor(core::Theme::constrastBorderColor));
+	push(brushSlider[2].make(next + vec4i(68, 4, sbw - 4, 24), 11, *this, [](float pos, core::Control& c, core::Form& f)->void {
 		try {
 			MaterialTool* tool = dynamic_cast<MaterialTool*>(Controller::get().getTool());
 			tool->brush.step = pos;
