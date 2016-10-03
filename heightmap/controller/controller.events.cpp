@@ -43,11 +43,17 @@ int Controller::onMouseMove(const core::eventInfo& e) {
 	mpos = core::vec2i(LOWORD(e.lP), HIWORD(e.lP));
 	if (tool) tool->onMouseMove(e);
 	if (dragging) {
+		/*
 		core::matrixf rot;
 		rot.rotate(0.25f*(mpos.x - lpos.x), 0.0f, 1.0f, 0.0f);
 		rot.rotate(0.25f*(mpos.y - lpos.y), 1.0f, 0.0f, 0.0f);
-		rotation = rotation*rot;
-		lpdata->view.modelview = rotation*translation;
+		rotation = rotation*rot;*/
+		vec3 pos1, pos2;
+		if (raytrace(pos1, lpos) && raytrace(pos2, mpos)) {
+			vec3 dir = pos2 - pos1;
+			pan.translate(dir.x, 0.0f, dir.z);
+		}
+		updateViewMatrix();
 		invalidate();
 	}
 	return EventListener::onMouseMove(e);

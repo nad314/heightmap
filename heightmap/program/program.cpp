@@ -39,6 +39,7 @@ void Program::load() {
 	Controller::lock();
 	data->load();
 	wnd.load();
+	Controller::get().initViewMatrix();
 	Controller::unlock();
 	Controller::invalidate();
 }

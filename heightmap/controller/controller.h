@@ -10,7 +10,7 @@ protected:
 	bool isbusy = 0;
 	core::EventListener* tool = NULL;
 
-	core::matrixf rotation, translation;
+	core::matrixf rotation, translation, pan;
 
 public:
 	static bool busy;
@@ -38,4 +38,9 @@ public:
 
 	static void lock();
 	static void unlock();
+
+	//transform
+	void initViewMatrix();
+	void updateViewMatrix();
+	bool raytrace(vec3& point, const vec2i& mp);
 };

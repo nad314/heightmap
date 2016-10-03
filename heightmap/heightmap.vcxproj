@@ -132,6 +132,7 @@
     <ClCompile Include="chunk\chunk.cpp" />
     <ClCompile Include="controller\controller.cpp" />
     <ClCompile Include="controller\controller.events.cpp" />
+    <ClCompile Include="controller\controller.transform.cpp" />
     <ClCompile Include="cube\cube.cpp" />
     <ClCompile Include="mainWindow\MainWindow.cpp" />
     <ClCompile Include="main\main.cpp" />
