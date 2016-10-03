@@ -41,3 +41,11 @@ bool Controller::raytrace(vec3& point, const vec2i& mp) {
 	point = r0.xyz() + r1.xyz()*t;
 	return 1;
 }
+
+bool Controller::brushRectIntersection(const vec3& pos, const float& rad, const vec4& rect) {
+	if (pos.x + rad < rect.x) return 0;
+	if (pos.x - rad > rect.z) return 0;
+	if (pos.z + rad < rect.w) return 0;
+	if (pos.z - rad > rect.y) return 0;
+	return 1;
+}

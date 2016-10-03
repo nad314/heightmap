@@ -53,6 +53,6 @@ void Storage::load() {
 	if (textures.count())
 		material = textures[0];
 	chunk.buildSimple(vec4(-1, 1, 1, -1), shader);
-	map.buildSimple(2, 2, shader);
+	map.buildSimple(8, 8, shader);
 }
 

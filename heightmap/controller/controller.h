@@ -43,4 +43,5 @@ public:
 	void initViewMatrix();
 	void updateViewMatrix();
 	bool raytrace(vec3& point, const vec2i& mp);
+	static bool brushRectIntersection(const vec3& pos, const float& rad, const vec4& rect);
 };

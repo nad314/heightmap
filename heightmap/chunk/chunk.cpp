@@ -38,6 +38,7 @@ namespace craft {
 	}
 
 	ChunkMesh& ChunkMesh::buildSimple(const int& x, const int& y, core::glShader& shader) {
+		pos = vec2(x, y);
 		return buildSimple(vec4(0.0f, 0.0f, 1.0f, -1.0f) + vec4((float)x, (float)-y, (float)x, (float)-y) , shader);
 	}
 }

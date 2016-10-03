@@ -71,13 +71,18 @@ MaterialTool& MaterialTool::sendCompute(const vec3& point) {
 	data.material.diffuse.bind(0);
 	data.material.normal.bind(1);
 
+	int counter(0);
 	for (auto& i : data.map.mesh) {
+		if (!Controller::brushRectIntersection(point, brush.metrics.x, i.rect))
+			continue;
 		glExt::uniform4fv(uniform[1], 1, i.rect);
 		glExt::uniform2fv(uniform[4], 1, i.pos);
 		glExt::bindImageTexture(1, i.material.diffuse, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA8);
 		glExt::bindImageTexture(2, i.material.normal, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA8);
 		glExt::dispatchCompute((int)imageSize.x / 16, (int)imageSize.y / 16, 1);
+		++counter;
 	}
+	core::Debug::print("Updated %d textures\n", counter);
 	compute.stop();
 	glExt::memoryBarrier(GL_ALL_BARRIER_BITS);
 	return *this;
