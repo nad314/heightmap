@@ -21,5 +21,6 @@ namespace craft {
 
 		inline void draw() { mesh.drawTris(); }
 		ChunkMesh& buildSimple(const vec4& r, core::glShader& shader);
+		ChunkMesh& buildSimple(const int& x, const int& y, core::glShader& shader);
 	};
 }

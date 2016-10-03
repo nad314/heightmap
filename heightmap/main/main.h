@@ -10,6 +10,7 @@ using namespace coreTypes;
 
 //craft
 #include <chunk/chunk.h>
+#include <map/map.h>
 
 //models
 #include <cube/cube.h>

@@ -9,6 +9,7 @@ public:
 	core::buffer<core::glTextureMaterial> textures;
 
 	craft::ChunkMesh chunk;
+	craft::Map map;
 	Storage();
 	~Storage();
 

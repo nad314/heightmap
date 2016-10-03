@@ -75,6 +75,9 @@
     <ClCompile Include="tool\materialTool.events.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="map\map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main\main.h">
@@ -120,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tool\materialTool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map\map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

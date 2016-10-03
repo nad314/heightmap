@@ -58,7 +58,13 @@ void Controller::drawScene(const core::eventInfo& e) {
 	glExt::uniform1i(glExt::getUniformLocation(data.shader, "normalMap"), 1);
 	glExt::uniform1f(glExt::getUniformLocation(data.shader, "scale"), data.chunk.material.scale.x);
 	//data.model.drawTris();
-	data.chunk.draw();
+	//data.chunk.draw();
+	for (auto& i : data.map.mesh) {
+		i.material.diffuse.bind(0);
+		i.material.normal.bind(1);
+		glExt::uniform1f(glExt::getUniformLocation(data.shader, "scale"), i.material.scale.x);
+		i.draw();
+	}
 	data.shader.stop();
 	core::glTexture::unbind();
 	glDisable(GL_DEPTH_TEST);
@@ -74,6 +80,7 @@ void Controller::initGL() {
 	glEnable(GL_TEXTURE0);
 	glEnable(GL_TEXTURE1);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDepthFunc(GL_LEQUAL);
 	glClearColor(0.1f, 0.1f, 0.11f, 1.0f);
 }
 
