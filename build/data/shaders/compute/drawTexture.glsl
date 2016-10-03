@@ -30,7 +30,7 @@ void main() {
 	vec4 c2 = texture2D(matDiffuse, pos2);
 	vec4 n2 = texture2D(matNormal, pos2);
 
-	imageStore( difIn, pos, c2*(dist) + c*(1.0-dist) );
-	imageStore( norIn, pos, n2*(dist) + n*(1.0-dist) );
+	imageStore(difIn, pos, c2*(dist) + c*(1.0-dist));
+	imageStore(norIn, pos, n2*(dist) + n*(1.0-dist));
 }
 

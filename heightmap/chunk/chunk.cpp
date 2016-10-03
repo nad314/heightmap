@@ -4,6 +4,7 @@ namespace craft {
 	ChunkMesh& ChunkMesh::buildSimple(const vec4& r, core::glShader& shader) {
 		rect = r;
 		texRect = vec4(0, 0, 1, 1);
+		pos = vec2(0.0f);
 		core::GameMesh m;
 		m.position.push_back(vec3(r.x, 0, r.y));
 		m.position.push_back(vec3(r.z, 0, r.y));

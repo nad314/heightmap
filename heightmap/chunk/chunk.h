@@ -15,6 +15,7 @@ namespace craft {
 	struct ChunkMesh: public core::SIMD {
 		vec4 rect;
 		vec4 texRect;
+		vec2 pos;
 		core::glGameMesh mesh;
 		core::glTextureMaterial material;
 

@@ -8,9 +8,6 @@ Storage::Storage() {
 	if (!shader.load("shaders/default/vertex.glsl", "shaders/default/fragment.glsl", "fragColor"))
 		core::Debug::error("Could not load shaders\n");
 	else shader.printDebugInfo();
-	if (!compute.load("shaders/compute/drawTexture.glsl"))
-		core::Debug::error("Could not load compute shader\n");
-	else compute.printDebugInfo();
 	model.make(cube, shader, "pos", "nor", "tan", "btan", "tex");
 	core::Path::popDir();
 }

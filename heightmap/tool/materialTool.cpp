@@ -56,14 +56,15 @@ bool MaterialTool::raytrace(vec3& point) {
 MaterialTool& MaterialTool::sendCompute(const vec3& point) {
 	vec2 imageSize = vec2(512);
 	vec4 rect = vec4(-1, 1, 1, -1);
-	vec2 chunkPos = vec2(0.0f);
 	Storage& data = Controller::get().storage();
+
+	glExt::memoryBarrier(GL_ALL_BARRIER_BITS);
 	compute.start();
 	glExt::uniform2fv(uniform[0], 1, vec2(point.x, point.z));
 	glExt::uniform2fv(uniform[7], 1, brush.metrics);
 	glExt::uniform4fv(uniform[1], 1, rect);
 	glExt::uniform2fv(uniform[2], 1, imageSize);
-	glExt::uniform2fv(uniform[4], 1, chunkPos);
+	glExt::uniform2fv(uniform[4], 1, data.chunk.pos);
 
 	glExt::uniform1i(uniform[5], 0);
 	glExt::uniform1i(uniform[6], 1);
@@ -75,6 +76,7 @@ MaterialTool& MaterialTool::sendCompute(const vec3& point) {
 	glExt::bindImageTexture(2, data.chunk.material.normal, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA8);
 	glExt::dispatchCompute((int)imageSize.x / 16, (int)imageSize.y / 16, 1);
 	compute.stop();
+	glExt::memoryBarrier(GL_ALL_BARRIER_BITS);
 	return *this;
 }
 
