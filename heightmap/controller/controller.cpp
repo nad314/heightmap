@@ -53,11 +53,18 @@ void Controller::drawScene(const core::eventInfo& e) {
 	glExt::uniform1f(glExt::getUniformLocation(data.shader, "scale"), data.chunk.material.scale.x);
 	//data.model.drawTris();
 	//data.chunk.draw();
+	vec3 a, b;
+	int counter = 0;
 	for (auto& i : data.map.mesh) {
 		i.material.diffuse.bind(0);
 		i.material.normal.bind(1);
 		glExt::uniform1f(glExt::getUniformLocation(data.shader, "scale"), i.material.scale.x);
-		i.draw();
+		a = vec3(i.rect.x, -0.2f, i.rect.y);
+		b = vec3(i.rect.z, 0.2f, i.rect.w);
+		if (data.frustum.aabbIntersection(a, b)) {
+			i.draw();
+			++counter;
+		}
 	}
 	data.shader.stop();
 	core::glTexture::unbind();
@@ -67,6 +74,8 @@ void Controller::drawScene(const core::eventInfo& e) {
 
 	GL::swapBuffers(*parent);
 	repaint = 0;
+
+	core::Debug::print("Rendered %d chunks\n", counter);
 }
 
 void Controller::initGL() {

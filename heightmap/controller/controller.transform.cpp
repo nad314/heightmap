@@ -24,6 +24,7 @@ void Controller::initViewMatrix() {
 
 void Controller::updateViewMatrix() {
 	lpdata->view.modelview = pan*rotation*translation;
+	lpdata->frustum.get(lpdata->view, *parent);
 }
 
 

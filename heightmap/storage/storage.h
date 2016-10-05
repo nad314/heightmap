@@ -3,6 +3,7 @@
 struct Storage: public core::SIMD {
 public:
 	core::glView view;
+	core::Frustum frustum;
 	core::glGameMesh model;
 	core::glShader shader;
 	core::glTextureMaterial material;
