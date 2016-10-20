@@ -74,8 +74,6 @@ void Controller::drawScene(const core::eventInfo& e) {
 
 	GL::swapBuffers(*parent);
 	repaint = 0;
-
-	core::Debug::print("Rendered %d chunks\n", counter);
 }
 
 void Controller::initGL() {

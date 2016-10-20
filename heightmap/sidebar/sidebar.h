@@ -4,6 +4,7 @@
 class Sidebar final : public core::Frame, public core::Getter<Sidebar> {
 public:
 	core::Button tabSwitcher;
+	core::DropdownMenu tabMenu;
 	TerrainTab terrainTab;
 	Sidebar() :Frame() { set(*this); }
 

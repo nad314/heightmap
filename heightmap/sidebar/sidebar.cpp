@@ -11,15 +11,48 @@ void Sidebar::onOpening() {
 void Sidebar::onOpened() {
 	Frame::onOpened();
 	setBackColor(App::Theme::FormBackColor);
-	push(tabSwitcher.make(vec4i(4, 2, App::Theme::sidebarClientWidth-4, 22), "Terrain", *this));
+	push(tabSwitcher.make(vec4i(4, 2, App::Theme::sidebarClientWidth - 4, 22), "Terrain", *this, [](core::Control& c, Form& f)->void {
+		try {
+			Sidebar& sb = dynamic_cast<Sidebar&>(f);
+			Rect r = sb.getRect() + Rect(c.rect.x, c.rect.w, 0, 0);
+			sb.tabMenu.show().moveTo(vec2i(r.x, r.y));
+		}
+		catch (std::bad_cast e) { core::Debug::log("%s\n", e.what()); }
+	}));
 	terrainTab.setParent(this).open();
 	push(&terrainTab);
+
+	tabMenu.setParent(this);
+	core::Theme::setFormColor(tabMenu);
+	tabMenu.controlBorderColor = tabMenu.controlBackColor;
+	tabMenu.push((new core::Button())->make(tabMenu.nextVertical() + Rect(0, 0, 200, 20), "Texture", tabMenu, [](core::Control& c, core::Form& f)->void {
+		try {
+			core::DropdownMenu& dm = dynamic_cast<core::DropdownMenu&>(f);
+			Sidebar::get().tabSwitcher.setText("Texture");
+			Sidebar::get().invalidate();
+			Sidebar::get().__invalidate();
+			dm.hide();
+		}
+		catch (std::bad_cast e) { core::Debug::log("%s\n", e.what()); }
+	}));
+	tabMenu.push((new core::Button())->make(tabMenu.nextVertical() + Rect(0, 0, 200, 20), "Terrain", tabMenu, [](core::Control& c, core::Form& f)->void {
+		try {
+			core::DropdownMenu& dm = dynamic_cast<core::DropdownMenu&>(f);
+			Sidebar::get().tabSwitcher.setText("Terrain");
+			Sidebar::get().invalidate();
+			Sidebar::get().__invalidate();
+			dm.hide();
+		}
+		catch (std::bad_cast e) { core::Debug::log("%s\n", e.what()); }
+	}));
+
 	setControlColors();
 }
 
 void Sidebar::onClosing() {
 	Frame::onClosing();
 	terrainTab.close();
+	tabMenu.close();
 }
 
 int Sidebar::onLButtonDown(const core::eventInfo& e) {

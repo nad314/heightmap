@@ -82,7 +82,6 @@ MaterialTool& MaterialTool::sendCompute(const vec3& point) {
 		glExt::dispatchCompute((int)imageSize.x / 16, (int)imageSize.y / 16, 1);
 		++counter;
 	}
-	core::Debug::print("Updated %d textures\n", counter);
 	compute.stop();
 	glExt::memoryBarrier(GL_ALL_BARRIER_BITS);
 	return *this;
