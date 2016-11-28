@@ -22,8 +22,7 @@ void Sidebar::onOpened() {
 	terrainTab.setParent(this).open();
 	push(&terrainTab);
 
-	tabMenu.setParent(this);
-	core::Theme::setFormColor(tabMenu);
+	tabMenu.setParent(this).open();
 	tabMenu.controlBorderColor = tabMenu.controlBackColor;
 	tabMenu.push((new core::Button())->make(tabMenu.nextVertical() + Rect(0, 0, 200, 20), "Texture", tabMenu, [](core::Control& c, core::Form& f)->void {
 		try {
